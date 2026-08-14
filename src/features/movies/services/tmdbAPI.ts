@@ -16,7 +16,7 @@ export async function getPopularMovies(){
   return response.data.results
 }
 
-export async function searchMovies(query){
+export async function searchMovies(query: string){
   const response = await tmdb.get('/search/movie',{
     params: { query },
   })
