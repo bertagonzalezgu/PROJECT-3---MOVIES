@@ -7,6 +7,7 @@ import starOutlined from '../assets/icons/star-outline.svg'
 import starFilled from '../assets/icons/star-solid.svg'
 import userOutlined from '../assets/icons/user-outline.svg'
 import userFilled from '../assets/icons/user-filled.svg'
+import { Link } from 'react-router-dom'
 
 import { useState } from 'react'
 
@@ -21,21 +22,26 @@ export default function NavBar(){
         <section className="hidden md:flex fixed left-6 top-1/2 -translate-y-1/2 z-50 flex-col items-center w-20 h-85 justify-center gap-10 px-6 py-15 rounded-full bg-[#1B1D2E]/30 backdrop-blur-md border border-white/20 shadow-xl shadow-black/30">
             <img src={logoMovies} alt="Logotipo de la app" className="absolute -top-15 left-1/2 -translate-x-1/2 z-10 w-30 h-30 pointer-events-none drop-shadow-md"/>
 
-            <button onClick={() => setActiveBtn('home')}>
-            {activeBtn === 'home' ? (
-                <img src={homeFilled} alt="Home icon filled" className="w-6 h-6" />
-            ) : (
-                <img src={homeOutlined} alt="Home icon outlined" className="w-6 h-6" />
-            )}
-            </button>
-
-            <button onClick={() => setActiveBtn('explore')}>
-            {activeBtn === 'explore' ? (
-                <img src={exploreFilled} alt="Explore icon filled" className="w-6 h-6" />
-            ) : (
-                <img src={exploreOutlined} alt="Explore icon outlined" className="w-6 h-6" />
-            )}
-            </button>
+            <Link to='/' >
+                <button onClick={() => setActiveBtn('home')}>
+                {activeBtn === 'home' ? (
+                    <img src={homeFilled} alt="Home icon filled" className="w-6 h-6" />
+                ) : (
+                    <img src={homeOutlined} alt="Home icon outlined" className="w-6 h-6" />
+                )}
+                </button>
+            </Link>
+           
+            <Link to='/explore' >
+                <button onClick={() => setActiveBtn('explore')}>
+                {activeBtn === 'explore' ? (
+                    <img src={exploreFilled} alt="Explore icon filled" className="w-6 h-6" />
+                ) : (
+                    <img src={exploreOutlined} alt="Explore icon outlined" className="w-6 h-6" />
+                )}
+                </button>
+            </Link>
+            
 
             <button onClick={() => setActiveBtn('favourites')}>
             {activeBtn === 'favourites' ? (
