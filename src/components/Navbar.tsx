@@ -71,22 +71,26 @@ export default function NavBar(){
 
             <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/60 to-transparent pointer-events-none"/>
 
-            <button onClick={() => setActiveBtn('home')}>
-                {activeBtn === 'home' ? (
-                <img src={homeFilled} alt="Home icon filled" className="w-6 h-6" />
-                ) : (
-                <img src={homeOutlined} alt="Home icon outlined" className="w-6 h-6" />
-                )}
-            </button>
-
-            <button onClick={() => setActiveBtn('explore')}>
-                {activeBtn === 'explore' ? (
-                <img src={exploreFilled} alt="Explore icon filled" className="w-6 h-6" />
-                ) : (
-                <img src={exploreOutlined} alt="Explore icon outlined" className="w-6 h-6" />
-                )}
-            </button>
-
+            <Link to='/'>
+                <button onClick={() => setActiveBtn('home')}>
+                    {activeBtn === 'home' ? (
+                    <img src={homeFilled} alt="Home icon filled" className="w-6 h-6" />
+                    ) : (
+                    <img src={homeOutlined} alt="Home icon outlined" className="w-6 h-6" />
+                    )}
+                </button>
+            </Link>
+            
+            <Link to='/explore'>
+                <button onClick={() => setActiveBtn('explore')}>
+                    {activeBtn === 'explore' ? (
+                    <img src={exploreFilled} alt="Explore icon filled" className="w-6 h-6" />
+                    ) : (
+                    <img src={exploreOutlined} alt="Explore icon outlined" className="w-6 h-6" />
+                    )}
+                </button>
+            </Link>
+            
             <span className="w-8 shrink-0" />
 
             <button onClick={() => setActiveBtn('favourites')}>
