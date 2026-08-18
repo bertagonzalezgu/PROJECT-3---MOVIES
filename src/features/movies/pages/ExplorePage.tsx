@@ -5,46 +5,74 @@ import { getDiscoverMovies } from "../services/tmdbAPI";
 import SearchBar from "../components/SearchBar";
 import MovieGrid from "../components/MovieGrid";
 
-export default function ExplorePage() {
+export default function ExplorePage(){
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
-  
+  const [error, setError] = useState<string | null>(null);
+
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
 
   useEffect(() => {
-    async function loadMovies() {
+    async function loadMovies(){
       try {
         setLoading(true);
+        setError(null);
         const data = await getDiscoverMovies();
         setMovies(data);
-      } catch (error) {
-        console.error("No se han podido cargar las películas", error);
+      } catch {
+        setError("No se han podido cargar las películas");
       } finally {
         setLoading(false);
       }
     }
 
-    loadMovies();
-  }, []);
+    loadMovies()}, []);
 
   const filteredMovies = movies.filter((movie) =>
     movie.title.toLowerCase().includes(query.toLowerCase())
   );
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4 text-white">Explorar</h1>
+    <main className="min-h-screen bg-[#171B36] text-white px-4 py-8 md:py-10 md:pr-12 md:pl-32 transition-all">
+      <header className="mb-6 border-b border-white/10 pb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
+          Explorar <span className="text-[#E50914]">Catálogo</span>
+        </h1>
+      </header>
 
-      <SearchBar />
+      <div className="mb-8 max-w-xl">
+        <SearchBar />
+      </div>
 
-      {loading ? (
-        <p className="text-slate-400 mt-4">Cargando películas...</p>
-      ) : filteredMovies.length === 0 ? (
-        <p className="text-slate-400 mt-4">No se han encontrado resultados</p>
-      ) : (
-        <MovieGrid movies={filteredMovies} />
+      {loading && (
+        <div className="flex justify-center items-center min-h-[40vh]">
+          <p className="text-lg font-medium animate-pulse text-gray-300">
+            Cargando catálogo...
+          </p>
+        </div>
       )}
-    </div>
+
+      {error && (
+        <div className="p-4 bg-[#B20710]/20 border border-[#B20710] text-red-200 rounded-lg text-center max-w-md mx-auto my-12">
+          <p>{error}</p>
+        </div>
+      )}
+
+      {!loading && !error && (
+        <>
+          {filteredMovies.length === 0 ? (
+            <div className="flex flex-col items-center justify-center min-h-[30vh] text-center">
+              <p className="text-gray-400 text-lg">
+                No se han encontrado resultados para{" "}
+                <span className="text-white font-semibold">"{query}"</span>
+              </p>
+            </div>
+          ) : (
+            <MovieGrid movies={filteredMovies} />
+          )}
+        </>
+      )}
+    </main>
   );
 }
