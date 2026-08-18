@@ -22,3 +22,10 @@ export async function searchMovies(query: string){
   })
   return response.data.results
 }
+
+export async function getDiscoverMovies(page: number = 1) {
+  const response = await tmdb.get('/discover/movie', {
+    params: { page },
+  })
+  return response.data.results
+}
