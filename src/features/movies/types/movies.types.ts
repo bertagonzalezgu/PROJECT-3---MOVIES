@@ -6,3 +6,13 @@ export interface Movie{
   vote_average: number
   overview: string
 }
+
+export interface Genre{
+  id: number
+  name: string
+}
+
+export interface MovieDetails extends Movie{
+  runtime: number
+  genres: Genre[]
+}
