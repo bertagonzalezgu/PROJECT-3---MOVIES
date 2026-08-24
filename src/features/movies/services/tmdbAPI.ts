@@ -1,4 +1,6 @@
 import axios from 'axios'
+import type { MovieDetails } from '../types/movies.types'
+import type { Credits } from '../types/credits.types'
 
 const API_URL = 'https://api.themoviedb.org/3'
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY
@@ -28,4 +30,15 @@ export async function getDiscoverMovies(page: number = 1) {
     params: { page },
   })
   return response.data.results
+}
+
+
+export async function getMovieDetails(id: string): Promise<MovieDetails>{
+  const response = await tmdb.get(`/movie/${id}`)
+  return response.data
+}
+
+export async function getMovieCredits(id: string): Promise<Credits>{
+  const response = await tmdb.get(`/movie/${id}/credits`)
+  return response.data
 }
