@@ -5,6 +5,7 @@ import type { Credits } from "../types/credits.types";
 import { getMovieCredits, getMovieDetails } from "../services/tmdbAPI";
 import axios from "axios";
 import placeholderPoster from '/src/assets/img/placeholder-poster-movies.png'
+import CastList from '../components/CastList'
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
@@ -134,6 +135,8 @@ export default function MovieDetailPage(){
                         <h2 className="text-lg font-bold text-white">Sinopsis</h2>
                         <p className="text-gray-300 leading-relaxed text-sm sm:text-base">{movieDetails.overview || "No hay sinopsis disponible para esta película."}</p>
                     </div>
+
+                    <CastList cast={movieCredits.cast}/>
 
                 </div>
 
