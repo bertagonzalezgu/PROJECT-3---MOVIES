@@ -1,4 +1,5 @@
 import type { Movie } from '../types/movies.types'
+import placeholderPoster from '/src/assets/img/placeholder-poster-movies.png'
 
 interface MovieCardProps {
   movie: Movie
@@ -22,7 +23,7 @@ export default function MovieCard({movie}: MovieCardProps){
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm bg-gray-800">
-            Sin imagen
+            <img src={placeholderPoster} alt="Placeholder poster" />
           </div>
         )}
 
