@@ -64,7 +64,7 @@ export default function MovieDetailPage(){
                     </h2>
                     <p>{error || "La película que buscas no existe o ha sido movida."}</p>
                 </div>
-                <Link to="/explore" className="mt-6 inline-block px-5 py-2.5 bg-[#000000]/40 hover:bg-[#000000]/60 text-white font-medium rounded-xl transition-colors border border-white/5">
+                <Link to="/explore" className="mt-6 inline-block px-5 py-2.5 bg-[#000000]/40 hover:bg-[#000000]/60 text-white font-medium rounded-xl transition-colors border border-white/5 cursor-pointer">
                     Volver al catálogo
                 </Link>
             </main>
