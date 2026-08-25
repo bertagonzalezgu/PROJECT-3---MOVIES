@@ -104,7 +104,12 @@ export default function MovieDetailPage(){
                             {movieDetails.title}
                         </h1>
                         {director && (
-                            <p className="text-base text-gray-400">Dirigida por <span className="text-gray-200 font-semibold">{director.name}</span></p>
+                            <p className="text-base text-gray-400">
+                                Dirigida por{" "}
+                                <Link to={`/director/${director.id}`} className="text-gray-200 font-semibold hover:text-[#E50914] transition-colors">
+                                    {director.name}
+                                </Link>
+                            </p>
                         )}
                     </div>
 

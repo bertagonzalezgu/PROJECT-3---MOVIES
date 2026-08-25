@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import type { CastMember } from '../types/credits.types'
 import placeholderPoster from '/src/assets/img/placeholder-poster-movies.png'
+import { Link } from 'react-router-dom'
 
 interface CastListProps {
   cast: CastMember[]
@@ -42,30 +43,24 @@ export default function CastList({ cast }: CastListProps) {
               : placeholderPoster
 
             return (
-              <div key={person.id} className="w-28 shrink-0">
-                <div className="aspect-2/3 rounded-lg overflow-hidden border border-white/5 bg-[#000000]/40">
-                  <img
-                    src={photoUrl}
-                    alt={person.name}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
+              <Link to={`/actor/${person.id}`}>
+                <div key={person.id} className="w-28 shrink-0">
+                  <div className="aspect-2/3 rounded-lg overflow-hidden border border-white/5 bg-[#000000]/40">
+                    <img src={photoUrl} alt={person.name} className="w-full h-full object-cover" loading="lazy"/>
+                  </div>
+                  <p className="text-sm font-semibold text-white mt-2 line-clamp-1">
+                    {person.name}
+                  </p>
+                  <p className="text-xs text-gray-400 line-clamp-1">
+                    {person.character}
+                  </p>
                 </div>
-                <p className="text-sm font-semibold text-white mt-2 line-clamp-1">
-                  {person.name}
-                </p>
-                <p className="text-xs text-gray-400 line-clamp-1">
-                  {person.character}
-                </p>
-              </div>
+              </Link>
             )
           })}
         </div>
 
-        <button
-          onClick={() => handleScroll('right')}
-          className="absolute -right-3 top-22 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-slate-900/90 text-white border border-slate-700 hover:bg-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity"
-        >
+        <button onClick={() => handleScroll('right')} className="absolute -right-3 top-22 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-slate-900/90 text-white border border-slate-700 hover:bg-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">
           ›
         </button>
       </div>
