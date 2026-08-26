@@ -86,7 +86,7 @@ export default function LoginForm(){
           <div className="w-full border-t border-white/10"></div>
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-[#1D2244] px-2 text-gray-400">O bien</span>
+          <span className="bg-[#1D2244] px-2 text-gray-400">O</span>
         </div>
       </div>
 
