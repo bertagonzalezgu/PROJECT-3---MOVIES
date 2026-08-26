@@ -7,6 +7,7 @@ import ActorDetailPage from '../features/movies/pages/ActorDetailPage'
 import DirectorDetailPage from '../features/movies/pages/DirectorDetailPage'
 import ProfilePage from '../features/auth/pages/ProfilePage'
 import RegisterPage from '../features/auth/pages/RegisterPage'
+import LoginPage from '../features/auth/pages/LoginPage'
 
 export default function App(){
 
@@ -18,6 +19,7 @@ export default function App(){
             <Route path='/explore' element={<ExplorePage/>}/>
             <Route path='/profile' element={<ProfilePage/>}/>
             <Route path='/register' element={<RegisterPage/>}/>
+            <Route path='/login' element={<LoginPage/>}/>
             <Route path='/movie/:id' element={<MovieDetailPage/>}/>
             <Route path='/actor/:id' element={<ActorDetailPage/>}/>
             <Route path='/director/:id' element={<DirectorDetailPage/>}/>
