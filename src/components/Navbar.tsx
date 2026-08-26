@@ -42,22 +42,24 @@ export default function NavBar(){
                 </button>
             </Link>
             
+                <button onClick={() => setActiveBtn('favourites')}>
+                {activeBtn === 'favourites' ? (
+                    <img src={starFilled} alt="Star icon filled" className="w-6 h-6" />
+                ) : (
+                    <img src={starOutlined} alt="Star icon outlined" className="w-6 h-6" />
+                )}
+                </button>            
 
-            <button onClick={() => setActiveBtn('favourites')}>
-            {activeBtn === 'favourites' ? (
-                <img src={starFilled} alt="Star icon filled" className="w-6 h-6" />
-            ) : (
-                <img src={starOutlined} alt="Star icon outlined" className="w-6 h-6" />
-            )}
-            </button>
-
-            <button onClick={() => setActiveBtn('profile')}>
-            {activeBtn === 'profile' ? (
-                <img src={userFilled} alt="Profile icon filled" className="w-6 h-6" />
-            ) : (
-                <img src={userOutlined} alt="Profile icon outlined" className="w-6 h-6" />
-            )}
-            </button>
+            <Link to='/profile'>
+                <button onClick={() => setActiveBtn('profile')}>
+                {activeBtn === 'profile' ? (
+                    <img src={userFilled} alt="Profile icon filled" className="w-6 h-6" />
+                ) : (
+                    <img src={userOutlined} alt="Profile icon outlined" className="w-6 h-6" />
+                )}
+                </button>
+            </Link>
+            
         </section>
 
         <section className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
