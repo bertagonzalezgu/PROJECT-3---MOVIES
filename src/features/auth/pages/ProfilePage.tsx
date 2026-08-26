@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
 
-export default function ProfilePage() {
+export default function ProfilePage(){
+  const { user } = useAuth()
+
   return (
     <main>
       <h1>Perfil</h1>
-      <p>Todavía no has iniciado sesión.</p>
-      <Link to="/login">Iniciar sesión</Link>
-      <Link to="/register">Crear cuenta</Link>
+      <p>Bienvenido, {user?.email}</p>
     </main>
   )
 }

@@ -8,6 +8,7 @@ import DirectorDetailPage from '../features/movies/pages/DirectorDetailPage'
 import ProfilePage from '../features/auth/pages/ProfilePage'
 import RegisterPage from '../features/auth/pages/RegisterPage'
 import LoginPage from '../features/auth/pages/LoginPage'
+import ProtectedRoute from '../features/auth/context/ProtectedRoutes'
 
 export default function App(){
 
@@ -17,7 +18,9 @@ export default function App(){
         <Routes>
             <Route path='/' element={<HomePage/>}/>
             <Route path='/explore' element={<ExplorePage/>}/>
-            <Route path='/profile' element={<ProfilePage/>}/>
+            <Route path='/profile' element={<ProtectedRoute>
+                                                <ProfilePage/>
+                                            </ProtectedRoute> }/>
             <Route path='/register' element={<RegisterPage/>}/>
             <Route path='/login' element={<LoginPage/>}/>
             <Route path='/movie/:id' element={<MovieDetailPage/>}/>
