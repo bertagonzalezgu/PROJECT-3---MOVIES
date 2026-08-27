@@ -8,6 +8,8 @@ import placeholderPoster from '/src/assets/img/placeholder-poster-movies.png'
 import CastList from '../components/CastList'
 import { useAuth } from "../../auth/context/AuthContext"
 import { addFavorite, removeFavorite, isFavorite } from "../../favorites/services/favoritesService"
+import heartFilled from '/src/assets/icons/heart-filled.png'
+import heartOutlined from '/src/assets/icons/heart-outlined.png'
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
@@ -121,19 +123,36 @@ export default function MovieDetailPage(){
 
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 lg:gap-12 items-start">
 
-                <div className="flex justify-center md:block">
-                    <div className="relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-[#E50914]/20 transition-shadow duration-300 border border-white/5 w-64 md:w-full">
-                        <img src={posterUrl} alt={`Póster de ${movieDetails.title}`} className="w-full h-auto object-cover"/>
+                <div className="flex flex-col items-center md:items-start gap-3 w-64 md:w-full">
+
+                    <div className="relative rounded-xl overflow-hidden border border-white/5 w-full">
+                        <img
+                        src={posterUrl}
+                        alt={`Póster de ${movieDetails.title}`}
+                        className="w-full h-auto object-cover"/>
                     </div>
+
+                    {user && (
+                        <button
+                        onClick={handleToggleFavorite}
+                        className={`group relative w-full inline-flex items-center justify-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 active:scale-95 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#E50914]/40 overflow-hidden backdrop-blur-md ${
+                            isFav
+                            ? "bg-[#E50914]/15 hover:bg-[#E50914]/25 border border-[#E50914]/40 text-white hover:shadow-lg hover:shadow-[#E50914]/20"
+                            : "bg-[#000000]/40 hover:bg-[#000000]/60 border border-white/10 text-gray-300 hover:text-white hover:border-white/20"
+                        }`}>
+                        <img
+                            src={isFav ? heartFilled : heartOutlined}
+                            alt="Icono favorito"
+                            className="w-5 h-5 object-contain transition-transform duration-300 group-hover:scale-110 group-active:scale-125"/>
+                        <span className="tracking-wide">
+                            {isFav ? "Quitar de favoritos" : "Añadir a favoritos"}
+                        </span>
+                        </button>
+                    )}
+
                 </div>
 
                 <div className="md:col-span-2 lg:col-span-3 flex flex-col gap-6">
-
-                    {user && (
-                        <button onClick={handleToggleFavorite}>
-                            {isFav ? "Quitar de favoritos" : "Añadir a favoritos"}
-                        </button>
-                    )}
 
                     <div>
                         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-2">
