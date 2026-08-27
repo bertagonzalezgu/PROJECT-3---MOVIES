@@ -1,5 +1,5 @@
 import type { FavoriteData } from "../../movies/types/favourites.types";
-import { doc, setDoc, deleteDoc } from "firebase/firestore"
+import { doc, setDoc, deleteDoc, getDoc } from "firebase/firestore"
 import { db } from "../../auth/services/firebaseConfig"
 
 interface FavoriteDataProps{
@@ -22,4 +22,10 @@ export async function addFavorite({ favData }: FavoriteDataProps){
 export async function removeFavorite(userId: string, movieId: number){
   const favoriteRef = doc(db, "favorites", getFavoriteId(userId, movieId))
   await deleteDoc(favoriteRef)
+}
+
+export async function isFavorite(userId: string, movieId: number): Promise<boolean>{
+  const favoriteRef = doc(db, "favorites", getFavoriteId(userId, movieId))
+  const actualFav = await getDoc(favoriteRef)
+  return actualFav.exists()
 }
