@@ -7,9 +7,10 @@ import axios from "axios";
 import placeholderPoster from '/src/assets/img/placeholder-poster-movies.png'
 import CastList from '../components/CastList'
 import { useAuth } from "../../auth/context/AuthContext"
-import { addFavorite, removeFavorite, isFavorite } from "../../favorites/services/favoritesService"
 import heartFilled from '/src/assets/icons/heart-filled.png'
 import heartOutlined from '/src/assets/icons/heart-outlined.png'
+import { addFavorite, removeFavorite, getFavoriteData, rateMovie } from "../../favorites/services/favoritesService"
+import RatingStars from "../../favorites/components/RatingStars"
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
@@ -19,6 +20,8 @@ export default function MovieDetailPage(){
 
     const { user } = useAuth()
     const [isFav, setIsFav] = useState(false)
+
+    const [rating, setRating] = useState<number | null>(null)
 
     const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null)
     const [movieCredits, setMovieCredits] = useState<Credits | null>(null)
@@ -39,9 +42,10 @@ export default function MovieDetailPage(){
             setMovieDetails(movieData)
             setMovieCredits(creditsData)   
             
-            if (user){
-                const fav = await isFavorite(user.uid, Number(id))
-                setIsFav(fav)
+            if(user){
+                const favData = await getFavoriteData(user.uid, Number(id))
+                setIsFav(favData !== null)
+                setRating(favData?.rating ?? null)
             }
 
         } catch(err){
@@ -74,6 +78,13 @@ export default function MovieDetailPage(){
             })
             setIsFav(true)
         }
+    }
+
+    async function handleRate(newRating: number){
+        if (!user || !movieDetails) return
+
+        await rateMovie(user.uid, movieDetails.id, newRating)
+        setRating(newRating)
     }
 
     if (loading){
@@ -148,6 +159,10 @@ export default function MovieDetailPage(){
                             {isFav ? "Quitar de favoritos" : "Añadir a favoritos"}
                         </span>
                         </button>
+                    )}
+
+                    {user && isFav && (
+                        <RatingStars rating={rating} onRate={handleRate}/>
                     )}
 
                 </div>
