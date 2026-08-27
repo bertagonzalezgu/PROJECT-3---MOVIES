@@ -9,6 +9,7 @@ import ProfilePage from '../features/auth/pages/ProfilePage'
 import RegisterPage from '../features/auth/pages/RegisterPage'
 import LoginPage from '../features/auth/pages/LoginPage'
 import ProtectedRoute from '../features/auth/context/ProtectedRoutes'
+import FavoritesPage from '../features/favorites/pages/FavoritesPage.tsx'
 
 export default function App(){
 
@@ -18,6 +19,7 @@ export default function App(){
         <Routes>
             <Route path='/' element={<HomePage/>}/>
             <Route path='/explore' element={<ExplorePage/>}/>
+            <Route path='/favorites' element={<FavoritesPage/>} />
             <Route path='/profile' element={<ProtectedRoute>
                                                 <ProfilePage/>
                                             </ProtectedRoute> }/>

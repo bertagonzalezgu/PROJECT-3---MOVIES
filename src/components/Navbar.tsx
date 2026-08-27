@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 
 import { useState } from 'react'
 
-type NavPages = 'home' | 'explore' | 'favourites' | 'profile'
+type NavPages = 'home' | 'explore' | 'favorites' | 'profile'
 
 export default function NavBar(){
 
@@ -42,13 +42,16 @@ export default function NavBar(){
                 </button>
             </Link>
             
-                <button onClick={() => setActiveBtn('favourites')}>
-                {activeBtn === 'favourites' ? (
-                    <img src={starFilled} alt="Star icon filled" className="w-6 h-6" />
-                ) : (
-                    <img src={starOutlined} alt="Star icon outlined" className="w-6 h-6" />
-                )}
-                </button>            
+            <Link to='/favorites'>
+                <button onClick={() => setActiveBtn('favorites')}>
+                    {activeBtn === 'favorites' ? (
+                        <img src={starFilled} alt="Star icon filled" className="w-6 h-6" />
+                    ) : (
+                        <img src={starOutlined} alt="Star icon outlined" className="w-6 h-6" />
+                    )}
+                    </button>  
+            </Link>
+                          
 
             <Link to='/profile'>
                 <button onClick={() => setActiveBtn('profile')}>
@@ -95,13 +98,16 @@ export default function NavBar(){
             
             <span className="w-8 shrink-0" />
 
-            <button onClick={() => setActiveBtn('favourites')}>
-                {activeBtn === 'favourites' ? (
-                <img src={starFilled} alt="Star icon filled" className="w-6 h-6" />
-                ) : (
-                <img src={starOutlined} alt="Star icon outlined" className="w-6 h-6" />
-                )}
-            </button>
+            <Link to='/favorites'>
+                <button onClick={() => setActiveBtn('favorites')}>
+                    {activeBtn === 'favorites' ? (
+                    <img src={starFilled} alt="Star icon filled" className="w-6 h-6" />
+                    ) : (
+                    <img src={starOutlined} alt="Star icon outlined" className="w-6 h-6" />
+                    )}
+                </button>
+            </Link>
+            
 
             <Link to='/profile'>
                 <button onClick={() => setActiveBtn('profile')}>

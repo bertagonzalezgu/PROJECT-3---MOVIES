@@ -1,6 +1,7 @@
 import type { FavoriteData } from "../../movies/types/favourites.types";
 import { doc, setDoc, deleteDoc, getDoc } from "firebase/firestore"
 import { db } from "../../auth/services/firebaseConfig"
+import { collection, query, where, getDocs } from "firebase/firestore"
 
 interface FavoriteDataProps{
   favData: FavoriteData
@@ -44,4 +45,12 @@ export async function getFavoriteData(userId: string, movieId: number) {
   }
 
   return snapshot.data() as { rating: number | null }
+}
+
+export async function getUserFavorites(userId: string) {
+  const favoritesRef = collection(db, "favorites")
+  const favoritesQuery = query(favoritesRef, where("userId", "==", userId))
+  const snapshot = await getDocs(favoritesQuery)
+
+  return snapshot.docs.map((doc) => doc.data())
 }
