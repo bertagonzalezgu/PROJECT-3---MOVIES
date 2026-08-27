@@ -29,3 +29,19 @@ export async function isFavorite(userId: string, movieId: number): Promise<boole
   const actualFav = await getDoc(favoriteRef)
   return actualFav.exists()
 }
+
+export async function rateMovie(userId: string, movieId: number, rating: number){
+  const favoriteRef = doc(db, "favorites", getFavoriteId(userId, movieId))
+  await setDoc(favoriteRef, { rating }, { merge: true })
+}
+
+export async function getFavoriteData(userId: string, movieId: number) {
+  const favoriteRef = doc(db, "favorites", getFavoriteId(userId, movieId))
+  const snapshot = await getDoc(favoriteRef)
+
+  if (!snapshot.exists()) {
+    return null
+  }
+
+  return snapshot.data() as { rating: number | null }
+}
