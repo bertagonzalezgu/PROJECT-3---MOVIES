@@ -103,13 +103,16 @@ export default function NavBar(){
                 )}
             </button>
 
-            <button onClick={() => setActiveBtn('profile')}>
-                {activeBtn === 'profile' ? (
-                <img src={userFilled} alt="Profile icon filled" className="w-6 h-6" />
-                ) : (
-                <img src={userOutlined} alt="Profile icon outlined" className="w-6 h-6" />
-                )}
-            </button>
+            <Link to='/profile'>
+                <button onClick={() => setActiveBtn('profile')}>
+                    {activeBtn === 'profile' ? (
+                    <img src={userFilled} alt="Profile icon filled" className="w-6 h-6" />
+                    ) : (
+                    <img src={userOutlined} alt="Profile icon outlined" className="w-6 h-6" />
+                    )}
+                </button>
+            </Link>
+            
             </div>
         </section>
       </>
