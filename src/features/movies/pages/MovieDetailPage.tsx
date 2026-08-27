@@ -6,12 +6,17 @@ import { getMovieCredits, getMovieDetails } from "../services/tmdbAPI";
 import axios from "axios";
 import placeholderPoster from '/src/assets/img/placeholder-poster-movies.png'
 import CastList from '../components/CastList'
+import { useAuth } from "../../auth/context/AuthContext"
+import { addFavorite, removeFavorite, isFavorite } from "../../favorites/services/favoritesService"
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
 export default function MovieDetailPage(){
     const {id} = useParams()
     const navigate = useNavigate()
+
+    const { user } = useAuth()
+    const [isFav, setIsFav] = useState(false)
 
     const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null)
     const [movieCredits, setMovieCredits] = useState<Credits | null>(null)
@@ -30,7 +35,13 @@ export default function MovieDetailPage(){
             setNotFound(false)
             const [movieData, creditsData] = await Promise.all([getMovieDetails(id), getMovieCredits(id)]) 
             setMovieDetails(movieData)
-            setMovieCredits(creditsData)
+            setMovieCredits(creditsData)   
+            
+            if (user){
+                const fav = await isFavorite(user.uid, Number(id))
+                setIsFav(fav)
+            }
+
         } catch(err){
             if (axios.isAxiosError(err) && err.response?.status === 404){
                 setNotFound(true)
@@ -42,7 +53,26 @@ export default function MovieDetailPage(){
         }      
     }
 
-    loadInfo()}, [id])
+    loadInfo()}, [id, user])
+
+    async function handleToggleFavorite(){
+        if (!user || !movieDetails) return
+
+        if (isFav){
+            await removeFavorite(user.uid, movieDetails.id)
+            setIsFav(false)
+        } else{
+            await addFavorite({
+            favData: {
+                userId: user.uid,
+                movieId: movieDetails.id,
+                movieTitle: movieDetails.title,
+                moviePoster: movieDetails.poster_path,
+            }
+            })
+            setIsFav(true)
+        }
+    }
 
     if (loading){
         return (
@@ -98,6 +128,12 @@ export default function MovieDetailPage(){
                 </div>
 
                 <div className="md:col-span-2 lg:col-span-3 flex flex-col gap-6">
+
+                    {user && (
+                        <button onClick={handleToggleFavorite}>
+                            {isFav ? "Quitar de favoritos" : "Añadir a favoritos"}
+                        </button>
+                    )}
 
                     <div>
                         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-2">
