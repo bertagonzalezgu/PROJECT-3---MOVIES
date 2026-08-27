@@ -10,21 +10,30 @@ export default function RatingStars({ rating, onRate }: RatingStarsProps){
   const stars = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
   return (
-    <div>
-      {stars.map((star) => {
-        const isFilled = rating !== null && star <= rating
+    <div className="w-full flex flex-col gap-2 bg-[#000000]/40 p-3 rounded-xl border border-white/10 backdrop-blur-md">
+      <span className="text-xs font-semibold text-gray-400 text-center tracking-wide">
+        {rating ? `Tu valoración: ${rating}/10` : "Valora esta película"}
+      </span>
 
-        return (
-          <button
-            key={star}
-            type="button"
-            onClick={() => onRate(star)}>
-            <img
-              src={isFilled ? starFilled : starOutlined}
-              alt={`Estrella ${star}`}/>
-          </button>
-        )
-      })}
+      <div className="flex items-center justify-between gap-0.5 w-full">
+        {stars.map((star) => {
+          const isFilled = rating !== null && star <= rating
+
+          return (
+            <button
+              key={star}
+              type="button"
+              onClick={() => onRate(star)}
+              className="p-0.5 transition-transform duration-200 hover:scale-125 focus:outline-none cursor-pointer group"
+              title={`Puntuar con ${star} estrella${star > 1 ? 's' : ''}`}>
+              <img
+                src={isFilled ? starFilled : starOutlined}
+                alt={`Estrella ${star}`}
+                className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 object-contain transition-opacity duration-200 group-hover:opacity-100"/>
+            </button>
+          )
+        })}
+      </div>
     </div>
   )
 }
