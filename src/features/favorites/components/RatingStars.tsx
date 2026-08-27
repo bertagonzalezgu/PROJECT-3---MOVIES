@@ -11,11 +11,20 @@ export default function RatingStars({ rating, onRate }: RatingStarsProps){
 
   return (
     <div>
-      {stars.map((star) => (
-        <span key={star} onClick={() => onRate(star)}>
-          {rating && star <= rating ? starFilled : starOutlined}
-        </span>
-      ))}
+      {stars.map((star) => {
+        const isFilled = rating !== null && star <= rating
+
+        return (
+          <button
+            key={star}
+            type="button"
+            onClick={() => onRate(star)}>
+            <img
+              src={isFilled ? starFilled : starOutlined}
+              alt={`Estrella ${star}`}/>
+          </button>
+        )
+      })}
     </div>
   )
 }
