@@ -66,7 +66,7 @@ export default function ExplorePage() {
       )}
 
       {error && (
-        <div className="p-4 bg-[#B20710]/20 border border-[#B20710] text-red-200 rounded-lg text-center max-w-md mx-auto my-12">
+        <div role="alert" className="p-4 bg-[#B20710]/20 border border-[#B20710] text-red-200 rounded-lg text-center max-w-md mx-auto my-12">
           <p>{error}</p>
         </div>
       )}
