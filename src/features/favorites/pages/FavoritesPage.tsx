@@ -129,15 +129,21 @@ export default function FavoritesPage(){
                 </Link>
 
                 {deleteId === fav.movieId ? (
-                  <div>
-                    <span>¿Quitar de favoritos?</span>
-                    <button onClick={() => handleConfirmRemove(fav.movieId)}>Sí, quitar</button>
-                    <button onClick={handleCancelRemove}>Cancelar</button>
-                  </div>
-                ) : (
-                  <button onClick={() => handleRemoveClick(fav.movieId)}>
-                    Quitar de favoritos
-                  </button>
+                    <div className="mx-4 mb-4 flex flex-col gap-2">
+                      <span className="text-xs text-gray-300 text-center">¿Quitar de favoritos?</span>
+                      <div className="flex gap-2">
+                        <button onClick={() => handleConfirmRemove(fav.movieId)} className="flex-1 px-3 py-1.5 text-xs font-semibold text-white bg-[#E50914] hover:bg-[#B20710] rounded-lg transition-colors">
+                          Sí, quitar
+                        </button>
+                        <button onClick={handleCancelRemove} className="flex-1 px-3 py-1.5 text-xs font-medium text-gray-300 hover:text-white bg-[#000000]/40 hover:bg-[#000000]/60 border border-white/10 rounded-lg transition-colors">
+                          Cancelar
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <button onClick={() => handleRemoveClick(fav.movieId)} className="mx-4 mb-4 px-3 py-1.5 text-xs font-medium text-red-300 hover:text-white hover:bg-[#B20710]/30 border border-[#B20710]/40 rounded-lg transition-colors">
+                      Quitar de favoritos
+                    </button>
                 )}
 
               </article>
