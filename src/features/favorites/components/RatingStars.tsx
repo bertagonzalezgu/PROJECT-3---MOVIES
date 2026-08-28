@@ -25,10 +25,10 @@ export default function RatingStars({ rating, onRate }: RatingStarsProps){
               type="button"
               onClick={() => onRate(star)}
               className="p-0.5 transition-transform duration-200 hover:scale-125 focus:outline-none cursor-pointer group"
-              title={`Puntuar con ${star} estrella${star > 1 ? 's' : ''}`}>
+              aria-label={`Puntuar con ${star} estrella${star > 1 ? 's' : ''}`}>
               <img
                 src={isFilled ? starFilled : starOutlined}
-                alt={`Estrella ${star}`}
+                alt=""
                 className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 object-contain transition-opacity duration-200 group-hover:opacity-100"/>
             </button>
           )

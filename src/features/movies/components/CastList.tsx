@@ -28,6 +28,7 @@ export default function CastList({ cast }: CastListProps) {
       <div className="relative group">
         <button
           onClick={() => handleScroll('left')}
+          aria-label="Desplazar reparto hacia la izquierda"
           className="absolute -left-3 top-22 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-slate-900/90 text-white border border-slate-700 hover:bg-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity"
         >
           ‹
@@ -43,8 +44,8 @@ export default function CastList({ cast }: CastListProps) {
               : placeholderPoster
 
             return (
-              <Link to={`/actor/${person.id}`}>
-                <div key={person.id} className="w-28 shrink-0">
+              <Link key={person.id} to={`/actor/${person.id}`}>
+                <div className="w-28 shrink-0">
                   <div className="aspect-2/3 rounded-lg overflow-hidden border border-white/5 bg-[#000000]/40">
                     <img src={photoUrl} alt={person.name} className="w-full h-full object-cover" loading="lazy"/>
                   </div>
@@ -60,7 +61,7 @@ export default function CastList({ cast }: CastListProps) {
           })}
         </div>
 
-        <button onClick={() => handleScroll('right')} className="absolute -right-3 top-22 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-slate-900/90 text-white border border-slate-700 hover:bg-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">
+        <button onClick={() => handleScroll('right')} aria-label="Desplazar reparto hacia la derecha" className="absolute -right-3 top-22 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-slate-900/90 text-white border border-slate-700 hover:bg-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">
           ›
         </button>
       </div>

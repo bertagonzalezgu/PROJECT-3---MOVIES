@@ -61,7 +61,7 @@ export default function FavoritesPage(){
   if(!user){
     return (
       <main className="min-h-screen bg-[#171B36] flex flex-col items-center justify-center text-white p-4">
-        <div className="p-4 bg-[#B20710]/20 border border-[#B20710] text-red-200 rounded-lg text-center max-w-md mx-auto">
+        <div role="alert" className="p-4 bg-[#B20710]/20 border border-[#B20710] text-red-200 rounded-lg text-center max-w-md mx-auto">
           <p>Inicia sesión para ver tus favoritos</p>
         </div>
         <Link to="/login" className="mt-6 inline-block px-5 py-2.5 bg-[#000000]/40 hover:bg-[#000000]/60 text-white font-medium rounded-xl transition-colors border border-white/5">
@@ -108,7 +108,7 @@ export default function FavoritesPage(){
 
                     {fav.rating && (
                       <div className="absolute top-2 right-2 bg-[#000000]/80 backdrop-blur-md text-amber-400 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 border border-white/10">
-                        <span>⭐</span>
+                        <span aria-hidden="true">⭐</span>
                         <span>{fav.rating}</span>
                       </div>
                     )}
