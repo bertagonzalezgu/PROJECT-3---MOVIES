@@ -3,8 +3,8 @@ import homeOutlined from '../assets/icons/home-outline-rounded.svg'
 import homeFilled from '../assets/icons/home-rounded.svg'
 import exploreOutlined from '../assets/icons/explore-outline-rounded.svg'
 import exploreFilled from '../assets/icons/explore-rounded.svg'
-import starOutlined from '../assets/icons/star-outline.svg'
-import starFilled from '../assets/icons/star-solid.svg'
+import heartFilled from '../assets/icons/heart-filled.svg'
+import heartOutlined from '../assets/icons/heart-outlined.svg'
 import userOutlined from '../assets/icons/user-outline.svg'
 import userFilled from '../assets/icons/user-filled.svg'
 import { Link } from 'react-router-dom'
@@ -45,9 +45,9 @@ export default function NavBar(){
             <Link to='/favorites'>
                 <button onClick={() => setActiveBtn('favorites')}>
                     {activeBtn === 'favorites' ? (
-                        <img src={starFilled} alt="Star icon filled" className="w-6 h-6" />
+                        <img src={heartFilled} alt="Heart icon filled" className="w-6 h-6" />
                     ) : (
-                        <img src={starOutlined} alt="Star icon outlined" className="w-6 h-6" />
+                        <img src={heartOutlined} alt="Heart icon outlined" className="w-6 h-6" />
                     )}
                     </button>  
             </Link>
@@ -65,16 +65,16 @@ export default function NavBar(){
             
         </section>
 
-        <section className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+        <section className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-sm">
             <img
             src={logoMovies}
             alt="Logotipo de la app"
             className="absolute -top-11 left-1/2 -translate-x-1/2 z-10 w-22 h-22 p-2 pointer-events-none drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)]"
             />
 
-            <div className="relative flex items-center w-80 justify-between gap-2 px-8 py-2.5 rounded-full bg-linear-to-b from-white/20 via-white/5 to-black/20 backdrop-blur-2xl border border-white/30 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] ring-1 ring-white/20 overflow-hidden">
+            <div className="relative flex items-center justify-between px-6 py-3 rounded-full bg-[#171B36]/80 backdrop-blur-xl border border-white/15 shadow-2xl shadow-black/60">
 
-            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/60 to-transparent pointer-events-none"/>
+            <div className="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-white/30 to-transparent pointer-events-none"/>
 
             <Link to='/'>
                 <button onClick={() => setActiveBtn('home')}>
@@ -101,9 +101,9 @@ export default function NavBar(){
             <Link to='/favorites'>
                 <button onClick={() => setActiveBtn('favorites')}>
                     {activeBtn === 'favorites' ? (
-                    <img src={starFilled} alt="Star icon filled" className="w-6 h-6" />
+                    <img src={heartFilled} alt="Heart icon filled" className="w-6 h-6" />
                     ) : (
-                    <img src={starOutlined} alt="Star icon outlined" className="w-6 h-6" />
+                    <img src={heartOutlined} alt="Heart icon outlined" className="w-6 h-6" />
                     )}
                 </button>
             </Link>

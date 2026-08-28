@@ -7,8 +7,8 @@ import axios from "axios";
 import placeholderPoster from '/src/assets/img/placeholder-poster-movies.png'
 import CastList from '../components/CastList'
 import { useAuth } from "../../auth/context/AuthContext"
-import heartFilled from '/src/assets/icons/heart-filled.png'
-import heartOutlined from '/src/assets/icons/heart-outlined.png'
+import heartFilled from '/src/assets/icons/heart-filled.svg'
+import heartOutlined from '/src/assets/icons/heart-outlined.svg'
 import { addFavorite, removeFavorite, getFavoriteData, rateMovie } from "../../favorites/services/favoritesService"
 import RatingStars from "../../favorites/components/RatingStars"
 
