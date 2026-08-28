@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useAuth } from "../../auth/context/AuthContext"
-import { getUserFavorites } from "../services/favoritesService"
+import { getUserFavorites, removeFavorite } from "../services/favoritesService"
 import type { FavoriteMovie } from "../../movies/types/favourites.types"
 import { Link } from "react-router-dom"
 import placeholderPoster from '/src/assets/img/placeholder-poster-movies.png'
@@ -11,6 +11,8 @@ export default function FavoritesPage(){
   const { user } = useAuth()
   const [favorites, setFavorites] = useState<FavoriteMovie[]>([])
   const [loading, setLoading] = useState(true)
+
+  const [deleteId, setDeleteId] = useState<number | null>(null)
 
   useEffect(() => {
     async function loadFavorites(){
@@ -26,6 +28,25 @@ export default function FavoritesPage(){
 
     loadFavorites()
   }, [user])
+
+  async function handleRemove(movieId: number){
+    if (!user) return
+    await removeFavorite(user.uid, movieId)
+    setFavorites((prev) => prev.filter((fav) => fav.movieId !== movieId))
+  }
+
+  function handleRemoveClick(movieId: number){
+    setDeleteId(movieId)
+  }
+
+  function handleCancelRemove(){
+    setDeleteId(null)
+  }
+
+  async function handleConfirmRemove(movieId: number){
+    await handleRemove(movieId)
+    setDeleteId(null)
+  }
 
   if(loading){
     return (
@@ -106,6 +127,19 @@ export default function FavoritesPage(){
                     </p>
                   </div>
                 </Link>
+
+                {deleteId === fav.movieId ? (
+                  <div>
+                    <span>¿Quitar de favoritos?</span>
+                    <button onClick={() => handleConfirmRemove(fav.movieId)}>Sí, quitar</button>
+                    <button onClick={handleCancelRemove}>Cancelar</button>
+                  </div>
+                ) : (
+                  <button onClick={() => handleRemoveClick(fav.movieId)}>
+                    Quitar de favoritos
+                  </button>
+                )}
+
               </article>
             )
           })}
