@@ -7,60 +7,52 @@ import heartFilled from '../assets/icons/heart-filled.svg'
 import heartOutlined from '../assets/icons/heart-outlined.svg'
 import userOutlined from '../assets/icons/user-outline.svg'
 import userFilled from '../assets/icons/user-filled.svg'
-import { Link } from 'react-router-dom'
-
-import { useState } from 'react'
-
-type NavPages = 'home' | 'explore' | 'favorites' | 'profile'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function NavBar(){
 
-    const [activeBtn, setActiveBtn] = useState<NavPages>('home')
+    const location = useLocation()
+
+    function isActive(url: string){
+    return location.pathname === url
+    }
 
     return (
         <>
         <section className="hidden md:flex fixed left-6 top-1/2 -translate-y-1/2 z-50 flex-col items-center w-14 h-85 justify-center gap-10 px-4 py-15 rounded-full bg-[#1B1D2E]/30 backdrop-blur-md border border-white/20 shadow-xl shadow-black/30">
             <img src={logoMovies} alt="Logotipo de la app" className="absolute -top-10 left-1/2 -translate-x-1/2 z-10 w-18 h-18 max-w-none pointer-events-none drop-shadow-md"/>
 
-            <Link to='/' >
-                <button onClick={() => setActiveBtn('home')}>
-                {activeBtn === 'home' ? (
-                    <img src={homeFilled} alt="Home icon filled" className="w-6 h-6" />
+            <Link to='/' aria-label="Inicio" aria-current={isActive('/') ? 'page' : undefined}>
+                {isActive('/') ? (
+                    <img src={homeFilled} alt="Icono casa relleno" className="w-6 h-6" />
                 ) : (
-                    <img src={homeOutlined} alt="Home icon outlined" className="w-6 h-6" />
+                    <img src={homeOutlined} alt="Icono casa trazado" className="w-6 h-6" />
                 )}
-                </button>
             </Link>
            
-            <Link to='/explore' >
-                <button onClick={() => setActiveBtn('explore')}>
-                {activeBtn === 'explore' ? (
-                    <img src={exploreFilled} alt="Explore icon filled" className="w-6 h-6" />
+            <Link to='/explore' aria-label="Explorar" aria-current={isActive('/explore') ? 'page' : undefined}>
+                {isActive('/explore') ? (
+                    <img src={exploreFilled} alt="Icono brújula relleno" className="w-6 h-6" />
                 ) : (
-                    <img src={exploreOutlined} alt="Explore icon outlined" className="w-6 h-6" />
+                    <img src={exploreOutlined} alt="Icono brújula trazado" className="w-6 h-6" />
                 )}
-                </button>
             </Link>
             
-            <Link to='/favorites'>
-                <button onClick={() => setActiveBtn('favorites')}>
-                    {activeBtn === 'favorites' ? (
-                        <img src={heartFilled} alt="Heart icon filled" className="w-6 h-6" />
-                    ) : (
-                        <img src={heartOutlined} alt="Heart icon outlined" className="w-6 h-6" />
-                    )}
-                    </button>  
+            <Link to='/favorites' aria-label="Favoritos" aria-current={isActive('/favorites') ? 'page' : undefined}>
+                {isActive('/favorites') ? (
+                    <img src={heartFilled} alt="Icono corazón relleno" className="w-6 h-6" />
+                ) : (
+                    <img src={heartOutlined} alt="Icono corazón trazado" className="w-6 h-6" />
+                )}
             </Link>
                           
 
-            <Link to='/profile'>
-                <button onClick={() => setActiveBtn('profile')}>
-                {activeBtn === 'profile' ? (
-                    <img src={userFilled} alt="Profile icon filled" className="w-6 h-6" />
+            <Link to='/profile' aria-label="Perfil" aria-current={isActive('/profile') ? 'page' : undefined}>
+                {isActive('/profile') ? (
+                    <img src={userFilled} alt="Icono usuario relleno" className="w-6 h-6" />
                 ) : (
-                    <img src={userOutlined} alt="Profile icon outlined" className="w-6 h-6" />
+                    <img src={userOutlined} alt="Icono usuario trazado" className="w-6 h-6" />
                 )}
-                </button>
             </Link>
             
         </section>
@@ -76,47 +68,39 @@ export default function NavBar(){
 
             <div className="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-white/30 to-transparent pointer-events-none"/>
 
-            <Link to='/'>
-                <button onClick={() => setActiveBtn('home')}>
-                    {activeBtn === 'home' ? (
-                    <img src={homeFilled} alt="Home icon filled" className="w-6 h-6" />
-                    ) : (
-                    <img src={homeOutlined} alt="Home icon outlined" className="w-6 h-6" />
-                    )}
-                </button>
+            <Link to='/' aria-label="Inicio" aria-current={isActive('/') ? 'page' : undefined}>
+                {isActive('/') ? (
+                    <img src={homeFilled} alt="Icono casa relleno" className="w-6 h-6" />
+                ) : (
+                    <img src={homeOutlined} alt="Icono casa trazado" className="w-6 h-6" />
+                )}
             </Link>
-            
-            <Link to='/explore'>
-                <button onClick={() => setActiveBtn('explore')}>
-                    {activeBtn === 'explore' ? (
-                    <img src={exploreFilled} alt="Explore icon filled" className="w-6 h-6" />
-                    ) : (
-                    <img src={exploreOutlined} alt="Explore icon outlined" className="w-6 h-6" />
-                    )}
-                </button>
+           
+            <Link to='/explore' aria-label="Explorar" aria-current={isActive('/explore') ? 'page' : undefined}>
+                {isActive('/explore') ? (
+                    <img src={exploreFilled} alt="Icono brújula relleno" className="w-6 h-6" />
+                ) : (
+                    <img src={exploreOutlined} alt="Icono brújula trazado" className="w-6 h-6" />
+                )}
             </Link>
             
             <span className="w-8 shrink-0" />
 
-            <Link to='/favorites'>
-                <button onClick={() => setActiveBtn('favorites')}>
-                    {activeBtn === 'favorites' ? (
-                    <img src={heartFilled} alt="Heart icon filled" className="w-6 h-6" />
-                    ) : (
-                    <img src={heartOutlined} alt="Heart icon outlined" className="w-6 h-6" />
-                    )}
-                </button>
+            <Link to='/favorites' aria-label="Favoritos" aria-current={isActive('/favorites') ? 'page' : undefined}>
+                {isActive('/favorites') ? (
+                    <img src={heartFilled} alt="Icono corazón relleno" className="w-6 h-6" />
+                ) : (
+                    <img src={heartOutlined} alt="Icono corazón trazado" className="w-6 h-6" />
+                )}
             </Link>
-            
+                          
 
-            <Link to='/profile'>
-                <button onClick={() => setActiveBtn('profile')}>
-                    {activeBtn === 'profile' ? (
-                    <img src={userFilled} alt="Profile icon filled" className="w-6 h-6" />
-                    ) : (
-                    <img src={userOutlined} alt="Profile icon outlined" className="w-6 h-6" />
-                    )}
-                </button>
+            <Link to='/profile' aria-label="Perfil" aria-current={isActive('/profile') ? 'page' : undefined}>
+                {isActive('/profile') ? (
+                    <img src={userFilled} alt="Icono usuario relleno" className="w-6 h-6" />
+                ) : (
+                    <img src={userOutlined} alt="Icono usuario trazado" className="w-6 h-6" />
+                )}
             </Link>
             
             </div>
