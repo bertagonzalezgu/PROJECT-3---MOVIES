@@ -70,7 +70,7 @@ export default function LoginForm(){
       </div>
 
       {error && (
-        <div className="p-3 bg-[#B20710]/20 border border-[#B20710] text-red-200 rounded-lg text-sm text-center">
+        <div role="alert" className="p-3 bg-[#B20710]/20 border border-[#B20710] text-red-200 rounded-lg text-sm text-center">
           <p>{error}</p>
         </div>
       )}
@@ -94,7 +94,7 @@ export default function LoginForm(){
         type="button"
         onClick={handleGoogleLogin}
         className="w-full py-2.5 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 shadow-sm">
-        <img src={googleIcon} alt="Google icon" />
+        <img src={googleIcon} alt="" className="w-6 h-6" />
         Iniciar sesión con Google
       </button>
     </form>

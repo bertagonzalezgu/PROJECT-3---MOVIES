@@ -55,7 +55,7 @@ export default function RegisterForm(){
       </div>
 
       {error && (
-        <div className="p-3 bg-[#B20710]/20 border border-[#B20710] text-red-200 rounded-lg text-sm text-center">
+        <div role="alert" className="p-3 bg-[#B20710]/20 border border-[#B20710] text-red-200 rounded-lg text-sm text-center">
           <p>{error}</p>
         </div>
       )}

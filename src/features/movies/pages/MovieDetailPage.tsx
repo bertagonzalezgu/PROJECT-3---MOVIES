@@ -101,7 +101,7 @@ export default function MovieDetailPage(){
     if (error || notFound){
         return (
             <main className="min-h-screen bg-[#171B36] flex flex-col items-center justify-center text-white p-4">
-                <div className="p-4 bg-[#B20710]/20 border border-[#B20710] text-red-200 rounded-lg text-center max-w-md mx-auto">
+                <div role="alert" className="p-4 bg-[#B20710]/20 border border-[#B20710] text-red-200 rounded-lg text-center max-w-md mx-auto">
                     <h2 className="text-xl font-bold mb-2 text-white">
                         {notFound ? "Película no encontrada" : "¡Vaya! Ha ocurrido un error"}
                     </h2>
@@ -146,6 +146,7 @@ export default function MovieDetailPage(){
                     {user && (
                         <button
                         onClick={handleToggleFavorite}
+                        aria-pressed={isFav}
                         className={`group relative w-full inline-flex items-center justify-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 active:scale-95 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#E50914]/40 overflow-hidden backdrop-blur-md ${
                             isFav
                             ? "bg-[#E50914]/15 hover:bg-[#E50914]/25 border border-[#E50914]/40 text-white hover:shadow-lg hover:shadow-[#E50914]/20"
@@ -153,7 +154,7 @@ export default function MovieDetailPage(){
                         }`}>
                         <img
                             src={isFav ? heartFilled : heartOutlined}
-                            alt="Icono favorito"
+                            alt=""
                             className="w-5 h-5 object-contain transition-transform duration-300 group-hover:scale-110 group-active:scale-125"/>
                         <span className="tracking-wide">
                             {isFav ? "Quitar de favoritos" : "Añadir a favoritos"}
