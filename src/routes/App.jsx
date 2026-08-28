@@ -10,6 +10,7 @@ import RegisterPage from '../features/auth/pages/RegisterPage'
 import LoginPage from '../features/auth/pages/LoginPage'
 import ProtectedRoute from '../features/auth/context/ProtectedRoutes'
 import FavoritesPage from '../features/favorites/pages/FavoritesPage.tsx'
+import Footer from '../components/Footer.tsx'
 
 export default function App(){
 
@@ -29,6 +30,7 @@ export default function App(){
             <Route path='/actor/:id' element={<ActorDetailPage/>}/>
             <Route path='/director/:id' element={<DirectorDetailPage/>}/>
         </Routes>
+        <Footer/>
         </>
     )
 }

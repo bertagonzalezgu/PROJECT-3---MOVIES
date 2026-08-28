@@ -71,10 +71,6 @@ export default function FavoritesPage(){
     )
   }
 
-  if(favorites.length === 0){
-    return <p>Todavía no tienes películas favoritas</p>
-  }
-
   return (
     <main className="min-h-screen bg-[#171B36] text-white px-4 py-8 md:py-10 md:pr-12 md:pl-32 transition-all">
       <header className="mb-6 border-b border-white/10 pb-4">
