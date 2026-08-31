@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import type { MovieDetails } from "../types/movies.types"
+import type { MovieDetails, MovieVideo } from "../types/movies.types"
 import type { Credits } from "../types/credits.types"
-import { getMovieCredits, getMovieDetails } from "../services/tmdbAPI"
+import { getMovieCredits, getMovieDetails, getMovieVideos } from "../services/tmdbAPI"
 
 export function useMovieDetail(id: string | undefined){
   
   const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null)
   const [movieCredits, setMovieCredits] = useState<Credits | null>(null)
+  const [trailer, setTrailer] = useState<MovieVideo | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [notFound, setNotFound] = useState(false)
@@ -20,12 +21,18 @@ export function useMovieDetail(id: string | undefined){
         setLoading(true)
         setError(null)
         setNotFound(false)
-        const [movieData, creditsData] = await Promise.all([
+        const [movieData, creditsData, videosData] = await Promise.all([
           getMovieDetails(id),
           getMovieCredits(id),
+          getMovieVideos(id)
         ])
         setMovieDetails(movieData)
         setMovieCredits(creditsData)
+
+        const officialTrailer = videosData.find(
+          (video) => video.type === "Trailer" && video.site === "YouTube"
+        )
+        setTrailer(officialTrailer ?? null)
       } catch(err){
         if(axios.isAxiosError(err) && err.response?.status === 404){
           setNotFound(true)
@@ -40,5 +47,5 @@ export function useMovieDetail(id: string | undefined){
     loadInfo()
   }, [id])
 
-  return { movieDetails, movieCredits, loading, error, notFound }
+  return { movieDetails, movieCredits, loading, error, notFound, trailer }
 }

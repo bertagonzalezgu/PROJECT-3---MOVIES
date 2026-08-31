@@ -15,7 +15,7 @@ export default function MovieDetailPage(){
   const navigate = useNavigate()
   const { user } = useAuth()
 
-  const { movieDetails, movieCredits, loading, error, notFound } = useMovieDetail(id)
+  const { movieDetails, movieCredits, loading, error, notFound, trailer } = useMovieDetail(id)
   const { isFav, rating, handleToggleFavorite, handleRate } = useFavorite(user, movieDetails)
 
   if(loading){
@@ -153,6 +153,31 @@ export default function MovieDetailPage(){
                 {movieDetails.overview || "No hay sinopsis disponible para esta película."}
               </p>
             </div>
+
+            {trailer && (
+              <div className="bg-[#000000]/40 p-6 rounded-xl border border-white/5 space-y-3">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-bold text-white">Tráiler</h2>
+                  <a
+                    href={`https://www.youtube.com/watch?v=${trailer.key}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-gray-400 hover:text-[#E50914] transition-colors"
+                  >
+                    Ver en YouTube ↗
+                  </a>
+                </div>
+                <div className="relative aspect-video rounded-lg overflow-hidden">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${trailer.key}`}
+                    title={`Tráiler de ${movieDetails.title}`}
+                    className="absolute inset-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+            )}
 
             <CastList cast={movieCredits.cast} />
 

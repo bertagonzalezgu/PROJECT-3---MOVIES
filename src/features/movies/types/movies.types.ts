@@ -16,3 +16,9 @@ export interface MovieDetails extends Movie{
   runtime: number
   genres: Genre[]
 }
+
+export interface MovieVideo{
+  key: string
+  site: string
+  type: string
+}
