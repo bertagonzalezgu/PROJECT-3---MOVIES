@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { getPopularMovies } from '../services/tmdbAPI'
 import type { Movie } from '../types/movies.types'
 import MovieGrid from '../components/MovieGrid'
-import Hero from '/Especialització_ItAcademy/PROJECTE 3 - MOVIES/project-movies-app/src/components/Hero'
+import Hero from '../../../components/Hero'
 
 export default function HomePage() {
   const [movies, setMovies] = useState<Movie[]>([])
