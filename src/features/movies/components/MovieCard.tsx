@@ -1,4 +1,4 @@
-import type { Movie } from '../../types/movies.types'
+import type { Movie } from '../types/movies.types'
 import placeholderPoster from '/src/assets/img/placeholder-poster-movies.png'
 import { Link } from 'react-router-dom'
 

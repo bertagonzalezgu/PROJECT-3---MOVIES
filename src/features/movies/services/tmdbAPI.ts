@@ -1,8 +1,8 @@
 import axios from 'axios'
-import type { DiscoverParams } from '../../types/discover.types'
-import type { MovieDetails } from '../../types/movies.types'
-import type { Credits } from '../../types/credits.types'
-import type { PersonDetails, PersonMovieCredits } from '../../types/person.types'
+import type { DiscoverParams } from '../types/discover.types'
+import type { MovieDetails } from '../types/movies.types'
+import type { Credits } from '../types/credits.types'
+import type { PersonDetails, PersonMovieCredits } from '../types/person.types'
 
 const API_URL = 'https://api.themoviedb.org/3'
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY

@@ -1,4 +1,4 @@
-import { useAuth } from "../context/AuthContext"
+import { useAuth } from "../context/useAuth"
 import { signOut } from "../services/authService"
 
 export default function ProfilePage(){

@@ -1,4 +1,4 @@
-import type { Movie } from '../../types/movies.types'
+import type { Movie } from '../types/movies.types'
 import MovieCard from './MovieCard'
 
 interface MovieGridProps {
