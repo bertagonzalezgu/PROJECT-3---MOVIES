@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import type { CastMember } from '../types/credits.types'
+import type { CastMember } from '../../types/credits.types'
 import placeholderPoster from '/src/assets/img/placeholder-poster-movies.png'
 import { Link } from 'react-router-dom'
 

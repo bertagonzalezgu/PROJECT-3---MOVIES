@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import type { Movie } from '../features/movies/types/movies.types'
+import type { Movie } from '../features/types/movies.types'
 
 interface HeroProps {
   movies: Movie[]

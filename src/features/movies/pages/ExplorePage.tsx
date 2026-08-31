@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import type { Movie } from "../types/movies.types";
+import type { Movie } from "../../types/movies.types";
 import { getDiscoverMovies, searchMovies } from "../services/tmdbAPI";
 import SearchBar from "../components/SearchBar";
 import MovieGrid from "../components/MovieGrid";

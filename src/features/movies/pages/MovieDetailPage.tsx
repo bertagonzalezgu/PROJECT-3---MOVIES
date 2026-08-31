@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import type { MovieDetails } from "../types/movies.types";
-import type { Credits } from "../types/credits.types";
+import type { MovieDetails } from "../../types/movies.types";
+import type { Credits } from "../../types/credits.types";
 import { getMovieCredits, getMovieDetails } from "../services/tmdbAPI";
 import axios from "axios";
 import placeholderPoster from '/src/assets/img/placeholder-poster-movies.png'
 import CastList from '../components/CastList'
-import { useAuth } from "../../auth/context/AuthContext"
+import { useAuth } from "../../auth/context/useAuth"
 import heartFilled from '/src/assets/icons/heart-filled.svg'
 import heartOutlined from '/src/assets/icons/heart-outlined.svg'
 import { addFavorite, removeFavorite, getFavoriteData, rateMovie } from "../../favorites/services/favoritesService"

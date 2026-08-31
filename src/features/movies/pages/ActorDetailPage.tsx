@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import type { PersonDetails, PersonCastCredit } from "../types/person.types";
+import type { PersonDetails, PersonCastCredit } from "../../types/person.types";
 import { getPersonDetails, getPersonMovieCredits } from "../services/tmdbAPI";
 import axios from "axios";
 import placeholderPoster from '/src/assets/img/placeholder-poster-movies.png'
