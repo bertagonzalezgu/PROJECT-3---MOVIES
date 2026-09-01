@@ -47,7 +47,7 @@ export default function ActorDetailPage(){
 
   return (
     <main className="min-h-screen bg-[#171B36] text-white pb-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-8 md:pt-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-8 md:pt-12 md:pl-32">
 
         <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-white mb-8 transition-colors group cursor-pointer">
           <span className="transition-transform group-hover:-translate-x-1">←</span>
