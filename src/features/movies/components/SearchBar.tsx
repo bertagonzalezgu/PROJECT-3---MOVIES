@@ -26,8 +26,9 @@ export default function SearchBar(){
 
       <div className="flex flex-wrap sm:flex-nowrap gap-3">
         <div className="flex flex-col gap-1 flex-1">
-          <label className="text-xs text-gray-400 font-medium ml-1">Género</label>
+          <label htmlFor="genre-filter" className="text-xs text-gray-400 font-medium ml-1">Género</label>
           <select
+            id="genre-filter"
             value={currentGenre}
             onChange={(e) => updateParam("genre", e.target.value)}
             className="w-full bg-[#1C2142] text-white px-3 py-2 rounded-xl border border-white/10 focus:outline-none focus:border-[#E50914] cursor-pointer text-sm">
@@ -40,8 +41,9 @@ export default function SearchBar(){
         </div>
 
         <div className="flex flex-col gap-1 flex-1">
-          <label className="text-xs text-gray-400 font-medium ml-1">Ordenar por</label>
+          <label htmlFor="sort-filter" className="text-xs text-gray-400 font-medium ml-1">Ordenar por</label>
           <select
+            id="sort-filter"
             value={currentSort}
             onChange={(e) => updateParam("sort", e.target.value)}
             className="w-full bg-[#1C2142] text-white px-3 py-2 rounded-xl border border-white/10 focus:outline-none focus:border-[#E50914] cursor-pointer text-sm"
