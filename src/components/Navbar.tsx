@@ -19,7 +19,7 @@ export default function NavBar(){
 
     return (
         <>
-        <section className="hidden md:flex fixed left-6 top-1/2 -translate-y-1/2 z-50 flex-col items-center w-14 h-85 justify-center gap-10 px-4 py-15 rounded-full bg-[#1B1D2E]/30 backdrop-blur-md border border-white/20 shadow-xl shadow-black/30">
+        <section className="hidden md:flex fixed left-6 top-1/2 -translate-y-1/2 z-50 flex-col items-center w-14 h-85 justify-center gap-10 px-4 py-15 rounded-full bg-[#171B36]/80 backdrop-blur-xl border border-white/15 shadow-2xl shadow-black/60">
             <img src={logoMovies} alt="Logotipo de la app" className="absolute -top-10 left-1/2 -translate-x-1/2 z-10 w-18 h-18 max-w-none pointer-events-none drop-shadow-md"/>
 
             <Link to='/' aria-label="Inicio" aria-current={isActive('/') ? 'page' : undefined}>
