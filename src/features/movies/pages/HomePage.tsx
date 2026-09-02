@@ -26,7 +26,7 @@ export default function HomePage() {
     loadMovies()}, [])
 
   return (
-    <main className="min-h-screen bg-[#171B36] text-white px-4 py-8 md:py-10 md:pr-12 md:pl-32 transition-all">
+    <main className="min-h-screen bg-[#171B36] text-white px-4 py-18 md:py-10 md:pr-12 md:pl-32 transition-all">
       
       {loading && (
         <div className="flex justify-center items-center min-h-[50vh]">

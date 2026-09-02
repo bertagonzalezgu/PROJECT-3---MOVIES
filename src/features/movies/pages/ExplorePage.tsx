@@ -46,7 +46,7 @@ export default function ExplorePage() {
   }, [query, genre, sort]);
 
   return (
-    <main className="min-h-screen bg-[#171B36] text-white px-4 py-8 md:py-10 md:pr-12 md:pl-32 transition-all">
+    <main className="min-h-screen bg-[#171B36] text-white px-4 py-18 md:py-10 md:pr-12 md:pl-32 transition-all">
       <header className="mb-6 border-b border-white/10 pb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
           Explorar <span className="text-[#E50914]">Catálogo</span>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 export default function RegisterPage(){
   return (
-    <main className="min-h-screen bg-[#171B36] text-white px-4 py-8 md:py-10 md:pr-12 md:pl-32 transition-all flex flex-col justify-center items-center">
+    <main className="min-h-screen bg-[#171B36] text-white px-4 py-18 md:py-10 md:pr-12 md:pl-32 transition-all flex flex-col justify-center items-center">
       <div className="w-full max-w-md">
 
         <header className="mb-6 text-center">
