@@ -1,39 +1,43 @@
 # Movies
 
-Aplicación web SPA para gestionar preferencias cinematográficas: explora películas en tiempo real desde TMDB, guarda tus favoritas, puntúalas del 1 al 10, y consulta fichas completas de películas, actores y directores.
+A single-page application for managing movie preferences: explore real-time data from TMDB, save your favorites, rate them from 1 to 10, and check out full detail pages for movies, actors and directors.
 
-## Funcionalidades
+## Demo
 
-- **Exploración de catálogo**: listado de películas populares con búsqueda, filtro por género y ordenación (popularidad, puntuación, fecha).
-- **Fichas de detalle completas**:
-  - **Película**: sinopsis, reparto, director, fecha de estreno, duración, géneros y tráiler (embed de YouTube).
-  - **Actor**: biografía, foto, fecha y lugar de nacimiento, filmografía completa.
-  - **Director**: mismo formato que actor, filtrando por su filmografía como director.
-- **Autenticación**: registro e inicio de sesión con email/contraseña, y login social con Google (Firebase Auth).
-- **Favoritos y ranking personal**: marcar/desmarcar películas como favoritas, puntuarlas del 1 al 10, editar o eliminar la puntuación, todo persistido por usuario en Firestore.
-- **Navegación accesible**: rutas protegidas para el área personal, navegación completa por teclado, etiquetas ARIA, y cumplimiento de contraste WCAG AA.
-- **Diseño mobile-first** con navegación adaptactiva (barra lateral en desktop, barra inferior en mobile).
+**Live demo:** [https://movies-bay-psi.vercel.app/](https://movies-bay-psi.vercel.app/)
 
-## Stack técnico
+## Features
 
-| Área | Tecnología |
+- **Catalog exploration**: popular movies listing with search, genre filtering and sorting (popularity, rating, release date).
+- **Full detail pages**:
+  - **Movie**: synopsis, cast, director, release date, runtime, genres and trailer (YouTube embed).
+  - **Actor**: biography, photo, birth date and place, full filmography.
+  - **Director**: same format as actor, filtering their filmography as director.
+- **Authentication**: email/password sign up and login, plus Google social login (Firebase Auth).
+- **Favorites and personal ranking**: mark/unmark movies as favorites, rate them from 1 to 10, edit or remove the rating, all persisted per user in Firestore.
+- **Accessible navigation**: protected routes for the personal area, full keyboard navigation, ARIA labels, and WCAG AA color contrast compliance.
+- **Mobile-first design** with adaptive navigation (side bar on desktop, bottom bar on mobile).
+
+## 🛠️ Tech stack
+
+| Area | Technology |
 |---|---|
 | Framework | React + TypeScript + Vite |
-| Estilos | Tailwind CSS |
-| Enrutado | React Router DOM v6 |
-| Datos de películas | [TMDB API v3](https://developer.themoviedb.org/reference/intro/getting-started) |
-| Autenticación | Firebase Authentication (email/password + Google) |
-| Base de datos | Cloud Firestore |
-| Peticiones HTTP | Axios |
+| Styling | Tailwind CSS |
+| Routing | React Router DOM v6 |
+| Movie data | [TMDB API v3](https://developer.themoviedb.org/reference/intro/getting-started) |
+| Authentication | Firebase Authentication (email/password + Google) |
+| Database | Cloud Firestore |
+| HTTP requests | Axios |
 | Testing | Vitest + React Testing Library |
-| Despliegue | Vercel |
+| Deployment | Vercel |
 
-## Estructura del proyecto
+## Project structure
 
 ```
 src/
-├── assets/                    # Iconos, imágenes, placeholders
-├── components/                # Navbar, Footer (compartidos globales)
+├── assets/                    # Icons, images, placeholders
+├── components/                # Navbar, Footer (shared global components)
 ├── features/
 │   ├── auth/
 │   │   ├── components/        # RegisterForm, LoginForm
@@ -42,98 +46,98 @@ src/
 │   │   └── services/           # firebaseConfig.ts, authService.ts
 │   ├── favorites/
 │   │   ├── components/        # RatingStars
-│   │   ├── pages/              # FavoritesPage
-│   │   └── services/           # favoritesService.ts (Firestore)
+│   │   ├── pages/               # FavoritesPage
+│   │   └── services/            # favoritesService.ts (Firestore)
 │   └── movies/
 │       ├── components/        # MovieCard, MovieGrid, SearchBar, CastList
 │       ├── hooks/              # useMovieDetail, useFavorite, usePersonDetail
-│       ├── pages/               # HomePage, ExplorePage, MovieDetailPage,
-│       │                         ActorDetailPage, DirectorDetailPage
-│       ├── services/            # tmdbAPI.ts
-│       └── types/               # movies.types.ts, credits.types.ts, person.types.ts
+│       ├── pages/                # HomePage, ExplorePage, MovieDetailPage,
+│       │                          ActorDetailPage, DirectorDetailPage
+│       ├── services/             # tmdbAPI.ts
+│       └── types/                # movies.types.ts, credits.types.ts, person.types.ts
 ├── routes/
-│   ├── App.jsx                 # Definición de rutas
+│   ├── App.jsx                 # Route definitions
 │   └── Layout.tsx               # Navbar + Outlet + Footer
 ├── styles/
 │   └── index.css
 └── main.jsx
 ```
 
-## Puesta en marcha
+## Getting started
 
-### Requisitos previos
+### Prerequisites
 
 - Node.js 18+
-- Una cuenta de [TMDB](https://www.themoviedb.org/) con API Key
-- Un proyecto de [Firebase](https://console.firebase.google.com/) con **Authentication** (Email/Password y Google habilitados) y **Cloud Firestore** activados
+- A [TMDB](https://www.themoviedb.org/) account with an API Key
+- A [Firebase](https://console.firebase.google.com/) project with **Authentication** (Email/Password and Google enabled) and **Cloud Firestore** enabled
 
-### 1. Clonar e instalar dependencias
+### 1. Clone and install dependencies
 
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/bertagonzalezgu/PROJECT-3---MOVIES.git
 cd project-movies-app
 npm install
 ```
 
-### 2. Variables de entorno
+### 2. Environment variables
 
-Crea un archivo `.env` en la raíz del proyecto con:
+Create a `.env` file in the project root with:
 
 ```env
-VITE_TMDB_API_KEY=tu_api_key_de_tmdb
+VITE_TMDB_API_KEY=your_tmdb_api_key
 
-VITE_FIREBASE_API_KEY=tu_api_key
-VITE_FIREBASE_AUTH_DOMAIN=tu_proyecto.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=tu_proyecto
-VITE_FIREBASE_STORAGE_BUCKET=tu_proyecto.firebasestorage.app
-VITE_FIREBASE_MESSAGING_SENDER_ID=tu_sender_id
-VITE_FIREBASE_APP_ID=tu_app_id
+VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project
+VITE_FIREBASE_STORAGE_BUCKET=your_project.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
 ```
 
-> Todas las variables deben llevar el prefijo `VITE_` para que Vite las exponga al frontend.
+> All variables must have the `VITE_` prefix so Vite exposes them to the frontend.
 
-### 3. Arrancar en desarrollo
+### 3. Run in development
 
 ```bash
 npm run dev
 ```
 
-La app estará disponible en `http://localhost:5173`.
+The app will be available at `http://localhost:5173`.
 
-### 4. Ejecutar tests
+### 4. Run tests
 
 ```bash
 npm run test
 ```
 
-Incluye:
-- Escenarios Gherkin (búsqueda, favoritos, puntuación) con React Testing Library.
-- Tests unitarios de los servicios `tmdbAPI` y `favoritesService`.
+Includes:
+- Gherkin scenarios (search, favorites, rating) with React Testing Library.
+- Unit tests for the `tmdbAPI` and `favoritesService` services.
 
-### 5. Build de producción
+### 5. Production build
 
 ```bash
 npm run build
 ```
 
-## Configuración de servicios externos
+## External services setup
 
 ### TMDB
 
-1. Crea una cuenta en [themoviedb.org](https://www.themoviedb.org/).
-2. Ve a **Configuración → API** y solicita una API Key de tipo "Developer".
-3. Copia la **API Key (v3 auth)** a tu `.env`.
+1. Create an account at [themoviedb.org](https://www.themoviedb.org/).
+2. Go to **Settings → API** and request a "Developer" type API Key.
+3. Copy the **API Key (v3 auth)** into your `.env`.
 
 ### Firebase
 
-1. Crea un proyecto en la [consola de Firebase](https://console.firebase.google.com/).
-2. Registra una app web (`</>`) y copia la configuración a tu `.env`.
-3. En **Authentication → Sign-in method**, activa los proveedores **Email/Password** y **Google**.
-4. En **Firestore Database**, crea la base de datos (modo de prueba es suficiente para desarrollo).
+1. Create a project in the [Firebase console](https://console.firebase.google.com/).
+2. Register a web app (`</>`) and copy the config into your `.env`.
+3. In **Authentication → Sign-in method**, enable the **Email/Password** and **Google** providers.
+4. In **Firestore Database**, create the database (test mode is enough for development).
 
-## Modelo de datos (Firestore)
+## Data model (Firestore)
 
-Colección `favorites`, un documento por combinación usuario/película (ID compuesto `{userId}_{movieId}`):
+`favorites` collection, one document per user/movie combination (composite ID `{userId}_{movieId}`):
 
 ```json
 {
@@ -145,26 +149,26 @@ Colección `favorites`, un documento por combinación usuario/película (ID comp
 }
 ```
 
-## Accesibilidad
+## Accessibility
 
-El proyecto sigue las directrices **WCAG 2.1 AA**:
-- Etiquetas y roles ARIA en formularios, botones de estado (`aria-pressed`, `aria-current`) y mensajes de error (`role="alert"`).
-- Navegación completa por teclado en todos los elementos interactivos.
-- Contraste de color verificado con [axe DevTools](https://www.deque.com/axe/devtools/).
-- Estructura semántica (`<main>`, `<header>`, `<article>`) en todas las páginas.
+The project follows **WCAG 2.1 AA** guidelines:
+- ARIA labels and roles on forms, state buttons (`aria-pressed`, `aria-current`) and error messages (`role="alert"`).
+- Full keyboard navigation across all interactive elements.
+- Color contrast verified with [axe DevTools](https://www.deque.com/axe/devtools/).
+- Semantic structure (`<main>`, `<header>`, `<article>`) across all pages.
 
-> Nota: las incidencias de accesibilidad detectadas dentro del `<iframe>` del reproductor de YouTube (tráiler) pertenecen al contenido embebido de terceros y no al código propio de la aplicación.
+> Note: accessibility issues detected inside the YouTube player `<iframe>` (trailer) belong to third-party embedded content, not to the application's own code.
 
-## Notas de implementación
+## Implementation notes
 
-- Los favoritos guardan una copia de `movieTitle`/`moviePoster` para evitar peticiones repetidas a TMDB al listar `/favorites`.
-- El tráiler incluye un enlace alternativo "Ver en YouTube" por si el `<iframe>` embebido es bloqueado por el navegador o restricciones regionales del vídeo.
-- La lógica de carga de datos y gestión de favoritos está extraída en hooks propios (`useMovieDetail`, `useFavorite`, `usePersonDetail`) para mantener los componentes de página centrados en la interfaz.
+- Favorites store a copy of `movieTitle`/`moviePoster` to avoid repeated TMDB requests when listing `/favorites`.
+- The trailer includes a fallback "Watch on YouTube" link in case the embedded `<iframe>` is blocked by the browser or by the video's regional restrictions.
+- Data loading and favorites logic is extracted into custom hooks (`useMovieDetail`, `useFavorite`, `usePersonDetail`) to keep page components focused on the UI.
 
-## Autora
+## Author
 
 Berta González Güell
 
-## Licencia
+## License
 
-Proyecto académico desarrollado como parte del itinerario de especialización.
+Academic project developed as part of the specialization program.

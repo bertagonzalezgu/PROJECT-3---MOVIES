@@ -47,7 +47,6 @@ describe('Gestión de favoritos y puntuación', () => {
   })
 
   it('Escenario: Marcar una película como favorita', async () => {
-    // Dado que el usuario ha iniciado sesión y está en la ficha de una película
     vi.mocked(favoritesService.getFavoriteData).mockResolvedValue(null)
     vi.mocked(favoritesService.addFavorite).mockResolvedValue(undefined)
 
@@ -59,10 +58,8 @@ describe('Gestión de favoritos y puntuación', () => {
 
     const favButton = screen.getByRole('button', { name: /añadir a favoritos/i })
 
-    // Cuando pulsa el botón "Añadir a favoritos"
     await userEvent.click(favButton)
 
-    // Entonces el botón cambia a "Quitar de favoritos"
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /quitar de favoritos/i })).toBeInTheDocument()
     })
@@ -78,7 +75,6 @@ describe('Gestión de favoritos y puntuación', () => {
   })
 
   it('Escenario: Puntuar una película favorita', async () => {
-    // Dado que el usuario ha marcado la película como favorita
     vi.mocked(favoritesService.getFavoriteData).mockResolvedValue({ rating: null })
     vi.mocked(favoritesService.rateMovie).mockResolvedValue(undefined)
 
@@ -88,11 +84,9 @@ describe('Gestión de favoritos y puntuación', () => {
       expect(screen.getByRole('button', { name: /quitar de favoritos/i })).toBeInTheDocument()
     })
 
-    // Cuando selecciona una puntuación en las estrellas
     const fifthStar = screen.getByRole('button', { name: /puntuar con 5 estrellas/i })
     await userEvent.click(fifthStar)
 
-    // Entonces la puntuación seleccionada queda reflejada
     await waitFor(() => {
       expect(screen.getByText(/tu valoración: 5\/10/i)).toBeInTheDocument()
     })
